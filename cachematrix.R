@@ -50,7 +50,7 @@ makeCacheMatrix <- function(x = matrix()) {
 
 cacheSolve <- function(x, ...) {
   
-  ## try to Obtain inverse of matrix already cached
+  ## try to obtain inverse of matrix already cached
     m <- x$getinverse()
       
   ## if matrix inverse is not null, i.e. solution is cached, give message and return the matrix
@@ -82,17 +82,18 @@ cacheSolve <- function(x, ...) {
 testFunction <- function() {
   
   ## creates a small square invertible matrix 
-   mat <- matrix(1:4, 2, 2)
+  mat <- matrix(1:4, 2, 2)
+  
+  ## for a bigger matrix, you can use something like: mat <- matrix(rnorm(100*100),100,100)
      
-  ## solve the matrix two times, first run will solve the matrix and cache the result
-  ## creates the cacheable matrix object using solve() function
+  ## solve the matrix two times, first run will solve the matrix using solve() function and cache the result
  
   message("First run without using cached object")
  
   test <- makeCacheMatrix(mat)
   print(cacheSolve(test))  
  
- ## when the same function is run second time, it uses the cache instead of solvinging it again.
+  ## when the same function is run second time, it uses the cache instead of solvinging it again.
   message("Second run using cached object")
  
   cacheSolve(test)
